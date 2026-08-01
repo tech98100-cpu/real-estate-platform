@@ -44,6 +44,10 @@ app.use((err, req, res, next) => {
 // but Railway's platform maps process.env.PORT automatically) — always use process.env.PORT, never hardcode.
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+export default app;
